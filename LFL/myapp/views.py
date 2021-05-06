@@ -175,10 +175,11 @@ def statistics_search_players(request):
                 numberOfGoals+=1
             if ((i.event_type).lower == "assist"):
                 numberOfAssists+=1
-            if ((i.event_type).lower == "red"):
-                numberOfYellowCards+=1
             if ((i.event_type).lower == "yellow"):
+                numberOfYellowCards+=1
+            if ((i.event_type).lower == "red"):
                 numberOfRedCards+=1
+
         stats = request.POST['stats']
         dateStart = parse_date(dateStart)
         dateEnd = parse_date(dateEnd)
@@ -289,7 +290,14 @@ def set_game(request):
                     return render(request, 'myapp/set_game.html', {'teams_list':teams_list, 'locations_list':locations})
 
                 t_threshold=parse_datetime(game_date)+timedelta(minutes=130)
-                all_events=Game.objects.filter(game_date__gte=game_date,game_date__lte=t_threshold,ended=0)
+                all_events1=Game.objects.filter(team1_id=team1,game_date__gte=game_date,game_date__lte=t_threshold,ended=0)
+                all_events2=Game.objects.filter(team2_id=team2,game_date__gte=game_date,game_date__lte=t_threshold,ended=0)
+                all_events3=Game.objects.filter(team1_id=team2,game_date__gte=game_date,game_date__lte=t_threshold,ended=0)
+                all_events4=Game.objects.filter(team2_id=team1,game_date__gte=game_date,game_date__lte=t_threshold,ended=0)
+                all_events=all_events1|all_events2|all_events3|all_events4
+                if parse_datetime(game_date)<datetime.now():
+                    messages.success(request, "Cannot choose old dates")
+                    return render(request, 'myapp/set_game.html', {'teams_list':teams_list, 'locations_list':locations})
                 if all_events.count()>0:
                     messages.success(request, "Time conflict!")
                     return render(request, 'myapp/set_game.html', {'teams_list':teams_list, 'locations_list':locations})
