@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+<title>Add Player</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!-- Custom Theme files -->
+<link href="{% static 'css/mystyle1.css' %}" rel="stylesheet" type="text/css" media="all" />
+<!-- //Custom Theme files -->
+<!-- web font -->
+<link href="//fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i" rel="stylesheet">
+<!-- //web font -->
+<link rel="stylesheet" href="{% static 'css/createplayer.css' %}"/>
+<link rel="stylesheet" href="{% static 'css/backbutton.css' %}"/>
+<link rel="stylesheet" href="{% static 'css/createplayer.css' %}"/>
+</head>
+<body>
+	<!-- main -->
+	<div class="main-w3layouts wrapper">
+		<h1>Create Player</h1>
+		<div class="main-agileinfo">
+			<div class="agileits-top">
+				<form action= "{% url 'myapp:add_player' %}" method="post">
+          {% csrf_token %}
+          <input class="text" type="text" name="player_name" placeholder="Player Name" required="">
+          <label for="teams-select">Choose a team:</label>
+          <select name="player_teams" required="">
+            <option value="">--Please choose a team--</option>
+            {% if team_list %}
+            {% for team in team_list %}
+            <option value="{{team.team_name}}">{{team.team_name}}</option>
+            {% endfor %}
+            {% endif %}
+          </select>
+					<br></br>
+					<label for="teams-select">Choose a position:</label>
+					<select name="player_position" required="">
+            <option value="">Player Position</option>
+            <option value="GK">GK</option>
+						<option value="DF">DF</option>
+						<option value="MF">MF</option>
+						<option value="FW">FW</option>
+          </select>
+
+					<div class="wthree-text">
+
+						<div class="clear"> </div>
+					</div>
+					<input type="submit" value="Add Player">
+          {% if messages %}
+          {% for msg in messages %}
+          <b> {{msg}} </b>
+          {% endfor %}
+          {% endif %}
+				</form>
+			</div>
+		</div>
+
+		<!-- //copyright -->
+		<ul class="colorlib-bubbles">
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+	</div>
+	<div class="Back_Effbutton">
+		<form>
+		<a href="{% url 'myapp:player_section' %}">
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				 Back
+			</a>
+		</form>
+	</div>
+	<!-- //main -->
+</body>
+</html>

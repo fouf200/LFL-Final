@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>TEAM PAGE</title>
+    <link rel="stylesheet" href="{% static 'css/mystyle1.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/createteambutton.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/deleteteambutton.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/modifyteambutton.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/backbutton.css' %}"/>
+  </head>
+  <body>
+
+    </div>
+    <section>
+      <!--for demo wrap-->
+      <link rel="stylesheet" href="{% static 'css/mystyle1.css' %}"/>
+      <h1>TEAMS</h1>
+      <div class="tbl-header">
+
+        <table cellpadding="0" cellspacing="0" border="0">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>President</th>
+              <th>Coach</th>
+              <th>Location</th>
+            </tr>
+          </thead>
+        </table>
+      </div>
+      <div class="tbl-content">
+      {% if Teams_list %}
+        <table cellpadding="0" cellspacing="0" border="0">
+          <tbody>
+            {% for Team in Teams_list %}
+            <tr>
+              <td>{{ Team.team_name }}</td>
+              <td>{{ Team.team_president }}</td>
+              <td>{{ Team.team_coach }}</td>
+              <td>{{ Team.location}}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      {% endif %}
+      </div>
+      <div class="Create_Effbutton">
+  <form>
+    <a href="{% url 'myapp:add_team' %}">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+       Add New Team
+    </a>
+  </form>
+</div>
+<div class="Modify_Effbutton">
+  <form>
+	<a href="{% url 'myapp:modify_team' %}">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+       Modify Team
+    </a>
+  </form>
+</div>
+<div class="Back_Effbutton">
+  <form>
+	<a href="{% url 'myapp:back_main' %}">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+       Back
+    </a>
+  </form>
+</div>
+<div class="Delete_Effbutton">
+  <form>
+    <a href="{% url 'myapp:delete_team' %}">
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    Delete Team
+    </a>
+  </form>
+    </section>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+<title>Modify Team</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!-- Custom Theme files -->
+<link href="{% static 'css/mystyle1.css' %}" rel="stylesheet" type="text/css" media="all" />
+<!-- //Custom Theme files -->
+<!-- web font -->
+<link href="//fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i" rel="stylesheet">
+<!-- //web font -->
+<link rel="stylesheet" href="{% static 'css/modifyteam.css' %}"/>
+<link rel="stylesheet" href="{% static 'css/backbutton.css' %}"/>
+<link rel="stylesheet" href="{% static 'css/createplayer.css' %}"/>
+</head>
+<body>
+	<!-- main -->
+	<div class="main-w3layouts wrapper">
+		<h1>Modify Team</h1>
+		<div class="main-agileinfo">
+			<div class="agileits-top">
+				<form action= "{% url 'myapp:advanced_modify_team' %}" method="post">
+          {% csrf_token %}
+          <label for="teams-select">Modify the team info:</label>
+	<input class="text" type="hidden" name="original" required="" value='{{selected_team.team_name}}'>
+	<input class="text" type="text" name="team_name" required="" value='{{selected_team.team_name}}'>
+	<input class="text" type="text" name="team_president" required="" value='{{selected_team.team_president}}'>
+	<input class="text" type="text" name="team_coach"  required="" value='{{selected_team.team_coach}}'>
+	<input class="text" type="text" name="location"  required="" value='{{selected_team.location}}'>
+					<div class="wthree-text">
+
+						<div class="clear"> </div>
+					</div>
+					<input type="submit" value="Modify">
+          {% if messages %}
+          {% for msg in messages %}
+          <b> {{msg}} </b>
+          {% endfor %}
+          {% endif %}
+				</form>
+			</div>
+		</div>
+
+		<!-- //copyright -->
+		<ul class="colorlib-bubbles">
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+	</div>
+	<div class="Back_Effbutton">
+		<form>
+		<a href="{% url 'myapp:team_section' %}">
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				 Back
+			</a>
+		</form>
+	</div>
+	<!-- //main -->
+</body>
+</html>

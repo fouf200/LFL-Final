@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Admin Page</title>
+    <link rel="stylesheet" href="{% static 'css/mystyle1.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/playersectionbutton.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/gamesectionbutton.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/teamsectionbutton.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/eventsection.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/logoutbuttonadmin.css' %}">
+  </head>
+  <body>
+
+    </div>
+    <section>
+      <!--for demo wrap-->
+      <link rel="stylesheet" href="{% static 'css/mystyle1.css' %}"/>
+      <h1>ADMIN PAGE</h1>
+<div class="Player_Effbutton">
+  <form>
+    <a href="{% url 'myapp:player_section' %}">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+       Player Section
+    </a>
+  </form>
+</div>
+<div class="Games_Effbutton">
+<form>
+<a href="{% url 'myapp:game_section' %}">
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+ Games Section
+</a>
+</form>
+</div>
+
+<div class="Team_Effbutton">
+  <form>
+    <a href="{% url 'myapp:team_section' %}">
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    Team Section
+    </a>
+  </form>
+</div>
+
+<div class="Event_effbutton">
+  <form>
+    <a href="{% url 'myapp:add_event' %}">
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    Event Section
+    </a>
+  </form>
+</div>
+
+<div class="Logout_Effbutton">
+  <form>
+    <a href="{% url 'myapp:logout' %}">
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    Logout
+    </a>
+  </form>
+</div>
+</section>

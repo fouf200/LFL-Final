@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+{% extends "myapp/base2.html" %}
+{% block body_block %}
+  <body>
+    <link id="statsfc-table-css" rel="stylesheet" href="https://cdn.statsfc.com/css/table.css">
+    <link rel="stylesheet" href="/css/common.css">
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:600,400,300">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/prettify.css">
+    <h1>Standings Table</h1>
+    <div class="sfc_table">
+      <table>
+        <thead>
+          <tr>
+            <th class="sfc_numeric"><abbr title="Position">Pos</abbr></th>
+            <th></th>
+            <th class="sfc_team">Team</th>
+            <th class="sfc_numeric"><abbr title="Matches played">Match Played</abbr>
+            </th><th class="sfc_numeric"><abbr title="Matches won">Wins</abbr></th><th class="sfc_numeric"><abbr title="Matches drawn">Draws</abbr></th><th class="sfc_numeric"><abbr title="Matches lost">Losses</abbr></th><th class="sfc_numeric"><abbr title="Goals for">Goals</abbr></th><th class="sfc_numeric"><abbr title="Points">Pts</abbr></th></tr></thead>
+            <tbody>
+              {% if standing_table %}
+              {% for standing_element in standing_table %}
+              <tr>
+                <td class="sfc_numeric">
+                  {{standing_element.Ranking}}
+                </td>
+                <td>
+                  <i class="sfc_movement sfc_movement_same">
+                  </i>
+                </td>
+                <td class="sfc_badge_manchester-city sfc_team" style="background-image: url(&quot;https://cdn.statsfc.com/kit/manchester-city.svg&quot;);">
+                  {{standing_element.Team.team_name}}
+                </td>
+                <td class="sfc_numeric">
+                  {{standing_element.Played}}
+                </td>
+                <td class="sfc_numeric">
+                  {{standing_element.Win}}
+                </td>
+                <td class="sfc_numeric">
+                  {{standing_element.Draw}}
+                </td>
+                <td class="sfc_numeric">
+                  {{standing_element.Loss}}
+                </td>
+                <td class="sfc_numeric">
+                  {{standing_element.Goals}}
+                </td>
+                <td class="sfc_numeric">
+                  {{standing_element.PointsAccumulated}}
+                </td>
+              </tr>
+              {% endfor %}
+              {% endif %}
+          </table>
+    </div>
+  </body>
+{% endblock %}

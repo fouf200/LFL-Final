@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+<title>Create Team</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!-- Custom Theme files -->
+<link href="{% static 'css/mystyle1.css' %}" rel="stylesheet" type="text/css" media="all" />
+<!-- //Custom Theme files -->
+<!-- web font -->
+<link href="//fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i" rel="stylesheet">
+<!-- //web font -->
+<link rel="stylesheet" href="{% static 'css/createteam.css' %}"/>
+<link rel="stylesheet" href="{% static 'css/backbutton.css' %}"/>
+<link rel="stylesheet" href="{% static 'css/createplayer.css' %}"/>
+</head>
+<body>
+	<!-- main -->
+	<div class="main-w3layouts wrapper">
+		<h1>Create team</h1>
+		<div class="main-agileinfo">
+			<div class="agileits-top">
+				<form action= "{% url 'myapp:add_team' %}" method="post">
+          {% csrf_token %}
+          <input class="text" type="text" name="team_name" placeholder="Name" required="">
+          <input class="text" type="text" name="team_president" placeholder="President" required="">
+          <input class="text" type="text" name="team_coach" placeholder="Coach" required="">
+          <input class="text" type="text" name="team_location" placeholder="Location" required="">
+					<div class="wthree-text">
+
+						<div class="clear"> </div>
+					</div>
+					<input type="submit" value="Add Team">
+          {%if messages%}
+          {%for msg in messages%}
+          <b> {{msg}} </b>
+          {% endfor %}
+          {% endif%}
+				</form>
+
+			</div>
+		</div>
+
+		<!-- //copyright -->
+		<ul class="colorlib-bubbles">
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+	</div>
+	<div class="Back_Effbutton">
+	  <form>
+		<a href="{% url 'myapp:team_section' %}">
+	      <span></span>
+	      <span></span>
+	      <span></span>
+	      <span></span>
+	       Back
+	    </a>
+	  </form>
+	</div>
+	<!-- //main -->
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+<title>Add event</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!-- Custom Theme files -->
+<link href="{% static 'css/mystyle1.css' %}" rel="stylesheet" type="text/css" media="all" />
+<link rel="stylesheet" href="{% static 'css/backbutton.css' %}"/>
+<!-- //Custom Theme files -->
+<!-- web font -->
+<link href="//fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i" rel="stylesheet">
+<!-- //web font -->
+<link rel="stylesheet" href="{% static 'css/createplayer.css' %}"/>
+</head>
+<body>
+	<!-- main -->
+	<div class="main-w3layouts wrapper">
+		<h1>Add Event</h1>
+		<div class="main-agileinfo">
+			<div class="agileits-top">
+				<form action= "{% url 'myapp:add_event' %}" method="post">
+          {% csrf_token %}
+          <label for="player-select">Choose a Player:</label>
+          <select name="player_selection" required="">
+            <option value="">--Please choose a Player</option>
+            {% if players_list %}
+            {% for player in players_list %}
+            <option value="{{player.player_id}}">{{player.name}}</option>
+            {% endfor %}
+            {% endif %}
+          </select>
+					<select name="type_selection" required="">
+            <option value="yellow">Yellow Card</option>
+            <option value="red">Red Card</option>
+						<option value="assist">Assist</option>
+						<option value="Goal1">Goal for {{game.team1_id.team_name}}</option>
+						<option value="Goal2">Goal for {{game.team2_id.team_name}}</option>
+          </select>
+					<input class="text" type="hidden" name="game_id" required="" value={{game.game_id}}>
+					<div class="wthree-text">
+
+						<div class="clear"> </div>
+					</div>
+					<input type="submit" name="set_event" value="Set Event">
+          {% if messages %}
+          {% for msg in messages %}
+          <b> {{msg}} </b>
+          {% endfor %}
+          {% endif %}
+				</form>
+			</div>
+		</div>
+
+		<!-- //copyright -->
+		<ul class="colorlib-bubbles">
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+	</div>
+	<!-- //main -->
+</body>
+</html>

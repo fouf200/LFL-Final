@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+
+{% extends "myapp/base2.html" %}
+{% block body_block %}
+{% load static %}
+<link id="statsfc-table-css" rel="stylesheet" href="https://cdn.statsfc.com/css/table.css">
+<link rel="stylesheet" href="{% static 'css/account.css' %}">
+<link rel="stylesheet" href="{% static 'css/common.css' %}">
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:600,400,300">
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/prettify.css">
+<br>
+<br>
+<br>
+<div class="statsfc-top-scorers demo" data-key="VsIkrxOyDBTSi1KkdIl7gdFb5dqjvOihsJ1PxVnN" data-competition="EPL" data-show-badges="true" data-use-default-css="true">
+
+    <div class="sfc_topscorers">
+      <table>
+        <thead>
+          <tr>
+            <th>Team Name
+            </th>
+            <th class="sfc_team">
+              President
+            </th>
+            <th class="sfc_numeric">
+              Coach
+            </th>
+            <th class="sfc_numeric">
+              Location
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          {% if team %}
+          <tr>
+            <td class="sfc_player">
+              {{team.team_name}}
+            </td>
+            <td class="sfc_badge_tottenham-hotspur sfc_team" style="background-image: url(&quot;https://cdn.statsfc.com/kit/tottenham-hotspur.svg&quot;);">
+            {{team.team_president}}
+            </td>
+            <td class="sfc_goals sfc_numeric">
+              {{team.team_president}}
+            </td>
+            <td class="sfc_goals sfc_numeric">
+              {{team.location}}
+            </td>
+          </tr>
+          {% endif %}
+
+          </tbody>
+        </table>
+      <table>
+        <thead>
+          <tr>
+            <th>Players
+            </th>
+            <th class="sfc_team">
+              Position
+            </th>
+            <th class="sfc_numeric">
+              Goals
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          {% if players %}
+          {% for p in players %}
+          <tr>
+            <td class="sfc_player">
+              {{p.name}}
+            </td>
+            <td class="sfc_badge_tottenham-hotspur sfc_team" style="background-image: url(&quot;https://cdn.statsfc.com/kit/tottenham-hotspur.svg&quot;);">
+            {{p.position}}
+            </td>
+            <td class="sfc_goals sfc_numeric">
+              {{p.goals}}
+            </td>
+          </tr>
+          {% endfor %}
+          {% endif %}
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+{% endblock %}

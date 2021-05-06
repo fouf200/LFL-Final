@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+{% extends "myapp/base2.html" %}
+{% block body_block %}
+{% load static %}
+<link id="statsfc-match-centre-css" rel="stylesheet" href="https://cdn.statsfc.com/css/match-centre.css">
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:600,400,300">
+<link href="{% static 'css/account.css' %}" rel="stylesheet" type="text/css" media="all" />
+<link href="{% static 'css/common.css' %}" rel="stylesheet" type="text/css" media="all" />
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/prettify.css">
+
+<div class="sfc_matchcentre"><table class="sfc_summary">
+  <tbody>
+    <tr>
+      <td class="sfc_badge sfc_home sfc_badge_manchester-united">
+        <img src="https://cdn.statsfc.com/kit/manchester-united.svg" width="50" height="50">
+      </td>
+      <td class="sfc_team sfc_home">
+        {{game.team1_id.team_name}}
+      </td>
+      <td class="sfc_score">
+        {{score1}}
+      </td>
+      <td class="sfc_status">
+        {{game.game_date}}
+      </td>
+      <td class="sfc_score">
+        {{score2}}
+      </td>
+      <td class="sfc_team sfc_away">
+        {{game.team2_id.team_name}}
+      </td>
+      <td class="sfc_badge sfc_away sfc_badge_manchester-united">
+        <img src="https://cdn.statsfc.com/kit/liverpool.svg" width="50" height="50">
+      </td>
+    </tr>
+  </tbody>
+</table>
+<div class="sfc_timelines"><div class="sfc_timeline">
+  {% for event in events %}
+  {% if event.event_type == "yellow" %}
+  <i class="sfc_event sfc_card sfc_first-yellow tipso_style" data-tipso="<strong>{{event.minute}}'</strong><br>Fabinho" style="left: calc( {% widthratio event.minute 1 1.11 %} - 8px);">&nbsp;</i>
+  {% endif %}
+  {% if event.event_type == "Goal1" %}
+<i class="sfc_event sfc_goal tipso top tipso_style" data-tipso="<strong>3'</strong><br>Mohamed Salah (1-0)" style="left: calc({% widthratio event.minute 1 1.11 %} - 8px);">&nbsp;</i>
+  {% endif %}
+  {% if event.event_type == "Goal2" %}
+<i class="sfc_event sfc_goal tipso top tipso_style" data-tipso="<strong>3'</strong><br>Mohamed Salah (1-0)" style="left: calc({% widthratio event.minute 1 1.11 %} - 8px);">&nbsp;</i>
+  {% endif %}
+  {% if event.event_type == "red" %}
+<i class="sfc_event sfc_card sfc_red tipso_style" data-tipso="<strong>3'</strong><br>Mohamed Salah (1-0)" style="left: calc({% widthratio event.minute 1 1.11 %} - 8px);">&nbsp;</i>
+  {% endif %}
+  {% endfor %}
+</div>
+<div class="sfc_annotations">
+  <span class="sfc_annotation" style="left: calc(0% - 10px);">0'</span><span class="sfc_annotation" style="left: calc(11.1111% - 10px);">10'</span><span class="sfc_annotation" style="left: calc(22.2222% - 10px);">20'</span><span class="sfc_annotation" style="left: calc(33.3333% - 10px);">30'</span><span class="sfc_annotation" style="left: calc(44.4444% - 10px);">40'</span><span class="sfc_annotation" style="left: calc(55.5556% - 10px);">50'</span><span class="sfc_annotation" style="left: calc(66.6667% - 10px);">60'</span><span class="sfc_annotation" style="left: calc(77.7778% - 10px);">70'</span><span class="sfc_annotation" style="left: calc(88.8889% - 10px);">80'</span><span class="sfc_annotation" style="left: calc(100% - 10px);">90'</span>
+</div>
+  <div class="sfc_timeline"></div>
+</div>
+<table class="sfc_players">
+  <thead>
+    <tr>
+      <th colspan="4">
+        {{status}}
+      </th>
+    </tr>
+  </thead>
+<table class="sfc_players">
+  <thead>
+    <tr>
+      <th colspan="4">
+        Players
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    {% if total_players %}
+    {% for player in total_players %}
+      <tr>
+      <td class="sfc_home sfc_number">
+        .
+      </td>
+      <td class="sfc_home sfc_name">
+        {{player.0}}
+      </td>
+      <td class="sfc_away sfc_name">
+        {{player.1}}
+      </td>
+      <td class="sfc_away sfc_number">
+        .
+      </td>
+    </tr>
+    {% endfor %}
+    {% endif %}
+</tbody>
+<table class="sfc_players">
+  <thead>
+    <tr>
+      <th colspan="4">
+        Game's events
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    {% if events %}
+    {% for event in events %}
+    <tr>
+      <td class="sfc_home sfc_number">
+        {{ "--"}}
+        {{event.minute}}
+        {{"'"}}
+      </td>
+      <td class="sfc_home sfc_name">
+        {{event}}
+        {% if event.event_type == "yellow" %}
+        <i class="sfc_event sfc_card sfc_first-yellow">&nbsp;</i>
+        {% endif %}
+        {% if event.event_type == "Goal1" %}
+        <i class="sfc_event sfc_goal ">&nbsp;</i>
+        {% endif %}
+        {% if event.event_type == "Goal2" %}
+        <i class="sfc_event sfc_goal ">&nbsp;</i>
+        {% endif %}
+        {% if event.event_type == "red" %}
+        <i class="sfc_event sfc_card sfc_red">&nbsp;</i>
+        {% endif %}
+      </td>
+    {% endfor %}
+    {% endif %}
+    </tr>
+</tbody>
+</table>
+{% endblock %}

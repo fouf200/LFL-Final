@@ -1,0 +1,28 @@
+body{
+  background-image: url(https://upload.wikimedia.org/wikipedia/commons/b/b9/Football_iu_1996.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+.boxx {
+  padding:4px;
+  background-color: rgba(200, 0, 0, 0.4);
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 100px;
+  margin-bottom: auto;
+  overflow-x: hidden;
+  overflow-y: auto;
+  text-align:justify;
+}
+
+h1{
+  font-weight: bold;
+  color: white;
+}
+
+p{
+  color: white;
+}

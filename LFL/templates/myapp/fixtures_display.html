@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+{% extends "myapp/base2.html" %}
+{% block body_block %}
+<article id="post-30" class="post-30 page type-page status-publish hentry">
+		<header class="entry-header">
+			<br>
+		</br>
+			<h1 class="entry-title">Results</h1>
+		</header>
+		<body>
+		<div class="entry-content">
+			<div id="statsfc-results-1">
+				<div class="sfc_results">
+					<div>
+						{% if favorite_games %}
+						<table>
+							<thead>
+								<tr>
+									<th colspan="5">Favorite Team Games
+									</th>
+								</tr>
+							</thead>
+							<tbody>
+								{% for game in favorite_games %}
+								<tr>
+									<td class="sfc_team sfc_home sfc_badge_newcastle-united sfc_badge" style="background-image: url(&quot;https://cdn.statsfc.com/kit/newcastle-united.svg&quot;);">
+										<span class="sfc_status"><a style="color:#757575;" href="{% url 'myapp:fixture_details' game_id=game.game_id %}">Click for more info - Played on {{game.game_date}} </a></span>{{game.team1_id.team_name}}
+									</td>
+										<td class="sfc_homeScore">{{game.team1_score}}</td>
+										<td class="sfc_vs"></td>
+										<td class="sfc_awayScore">{{game.team2_score}}</td>
+										<td class="sfc_team sfc_away sfc_badge_arsenal sfc_badge" style="background-image: url(&quot;https://cdn.statsfc.com/kit/arsenal.svg&quot;);">{{game.team2_id.team_name}}</td>
+									</tr>
+									{% endfor%}
+								</tbody>
+							</table>
+							{% endif %}
+
+
+
+						{% if fixtures_list %}
+						{% for fixture_date in fixtures_list %}
+						<table>
+							<thead>
+								<tr>
+									<th colspan="5">{{fixture_date.0.game_date}}
+									</th>
+								</tr>
+							</thead>
+							<tbody>
+								{% for game in fixture_date %}
+								<tr>
+									<td class="sfc_team sfc_home sfc_badge_newcastle-united sfc_badge" style="background-image: url(&quot;https://cdn.statsfc.com/kit/newcastle-united.svg&quot;);">
+										<span class="sfc_status"><a style="color:#757575;" href="{% url 'myapp:fixture_details' game_id=game.game_id %}">Click for more info </a></span>{{game.team1_id.team_name}}
+									</td>
+										<td class="sfc_homeScore">{{game.team1_score}}</td>
+										<td class="sfc_vs"></td>
+										<td class="sfc_awayScore">{{game.team2_score}}</td>
+										<td class="sfc_team sfc_away sfc_badge_arsenal sfc_badge" style="background-image: url(&quot;https://cdn.statsfc.com/kit/arsenal.svg&quot;);">{{game.team2_id.team_name}}</td>
+									</tr>
+									{% endfor%}
+								</tbody>
+							</table>
+							{% endfor%}
+							{% endif %}
+							</div>
+						</div>
+					</div>
+<p></p>
+</body>
+{% endblock %}

@@ -1,0 +1,40 @@
+.search_box{
+  margin-top: 30px;
+  margin-left: 520px;
+  width: 200px;
+  text-align:center;
+}
+
+.button_search {
+  margin-top: 30px;
+  margin-left: 520px;
+  width: 200px;
+  text-align:center;
+}
+
+.tab{
+  color: white;
+  text-align: center;
+  font-weight: bold;
+  margin-top: 30px;
+  margin-left: 450px;
+  width: 130px;
+}
+
+.Report{
+  color: white;
+  text-align: center;
+  font-weight: bold;
+}
+
+.stats{
+  background-image: url('/static/images/Stadium.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+.Report{
+  color: white;
+  opacity: 0.9;
+}

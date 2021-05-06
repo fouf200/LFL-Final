@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+{% extends "myapp/base2.html" %}
+{% block body_block %}
+  <body>
+    <h1>Report for {{searched}} </h1>
+    <br>
+    <h3>Number of goals between {{ dateStart }} and {{ dateEnd }} is: {{ numberOfGoals }}</h3>
+    <br>
+    <h3>Number of assists between {{ dateStart }} and {{ dateEnd }} is: {{ numberOfAssists }}</h3>
+    <br>
+    <h3>Number of yellow cards between {{ dateStart }} and {{ dateEnd }} is: {{ numberOfYellowCards }}</h3>
+    <br>
+    <h3>Number of red cards between {{ dateStart }} and {{ dateEnd }} is: {{ numberOfRedCards }}</h3>
+    <br>
+    <h3>Number of goals {{stats}} between {{ dateStart }} and {{ dateEnd }} is: {{ no_goals }}</h3>
+    <br>
+    <h3>Number of assists {{stats}} between {{ dateStart }} and {{ dateEnd }} is: {{ no_assists }}</h3>
+    <br>
+    <h3>Number of yellow {{stats}} cards weekly between {{ dateStart }} and {{ dateEnd }} is: {{ no_yellowCards }}</h3>
+    <br>
+    <h3>Number of red cards {{stats}} weekly between {{ dateStart }} and {{ dateEnd }} is: {{ no_redCard }}</h3>
+    <br>
+  </body>
+{% endblock %}

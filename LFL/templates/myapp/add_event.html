@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+<title>Add event</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!-- Custom Theme files -->
+<link href="{% static 'css/mystyle1.css' %}" rel="stylesheet" type="text/css" media="all" />
+<link rel="stylesheet" href="{% static 'css/backbutton.css' %}"/>
+
+<!-- //Custom Theme files -->
+<!-- web font -->
+<link href="//fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i" rel="stylesheet">
+<!-- //web font -->
+<link rel="stylesheet" href="{% static 'css/createplayer.css' %}"/>
+</head>
+<body>
+	<!-- main -->
+	<div class="main-w3layouts wrapper">
+		<h1>Add Event</h1>
+		<div class="main-agileinfo">
+			<div class="agileits-top">
+				<form action= "{% url 'myapp:add_event' %}" method="post">
+          {% csrf_token %}
+          <label for="games-select">Choose a Game:</label>
+          <select name="game_selection" required="">
+            <option value="">--Please choose a Game</option>
+            {% if games_list %}
+            {% for game in games_list %}
+            <option value="{{game.game_id}}">{{game}}</option>
+            {% endfor %}
+            {% endif %}
+          </select>
+					<div class="wthree-text">
+
+						<div class="clear"> </div>
+					</div>
+					<input type="submit" name="set_player" value="Set Player">
+					<input type="submit" name="end_game" value="End Game">
+          {% if messages %}
+          {% for msg in messages %}
+          <b> {{msg}} </b>
+          {% endfor %}
+          {% endif %}
+				</form>
+			</div>
+		</div>
+
+		<!-- //copyright -->
+		<ul class="colorlib-bubbles">
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+	</div>
+	<div class="Back_Effbutton">
+	  <form>
+		<a href="{% url 'myapp:back_main' %}">
+	      <span></span>
+	      <span></span>
+	      <span></span>
+	      <span></span>
+	       Back
+	    </a>
+	  </form>
+	</div>
+	<!-- //main -->
+</body>
+</html>
