@@ -5,7 +5,7 @@ from .models import Players,Event,Game,Team,Accounts,StandingTable
 from django import forms
 from django.contrib import messages
 from datetime import date,datetime,time
-from django.utils.dateparse import parse_date
+from django.utils.dateparse import parse_date, parse_datetime
 from datetime import timedelta
 # Create your views here.
 def home(request):
@@ -286,6 +286,12 @@ def set_game(request):
                 team2=Team.objects.get(team_name=team_visitor)
                 if location=="":
                     messages.success(request, "Select a location!")
+                    return render(request, 'myapp/set_game.html', {'teams_list':teams_list, 'locations_list':locations})
+
+                t_threshold=parse_datetime(game_date)+timedelta(minutes=130)
+                all_events=Game.objects.filter(game_date__gte=game_date,game_date__lte=t_threshold,ended=0)
+                if all_events.count()>0:
+                    messages.success(request, "Time conflict!")
                     return render(request, 'myapp/set_game.html', {'teams_list':teams_list, 'locations_list':locations})
                 Game(team1_id=team1, team2_id=team2, game_date=game_date, location=location).save()
                 messages.success(request, "Game registered!")
